@@ -1,6 +1,6 @@
-
 package com.ifels.secondary.key.client;
 
+import com.ifels.secondary.key.SecondaryKey;
 import com.ifels.secondary.key.compat.EpicFightCompat;
 import com.ifels.secondary.key.util.KeyboardUtil;
 import com.ifels.secondary.key.util.LogUtil;
@@ -23,42 +23,32 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import org.lwjgl.glfw.GLFW;
+
+import static com.ifels.secondary.key.client.Keybinding.*;
 
 public class SecondaryKeyClient {
+    private static final InputConstants.Key KEY_B = Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_B);
+    private static final InputConstants.Key KEY_R = Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_R);
+    private static final InputConstants.Key KEY_U = Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_U);
     private static boolean EMU_LEFT_DOWN = false;
     private static boolean EMU_RIGHT_DOWN = false;
-    private static final InputConstants.Key KEY_B;
-    private static final InputConstants.Key KEY_R;
-    private static final InputConstants.Key KEY_U;
-    private static Screen lastScreen;
-    private static InputConstants.Key savedJumpKey;
-    private static boolean jumpUnbound;
+    private static Screen lastScreen = null;
+    private static InputConstants.Key savedJumpKey = null;
+    private static boolean jumpUnbound = false;
 
     private static boolean isInGame(Minecraft mc) {
         return mc.player != null && mc.level != null;
     }
 
-    static {
-        KEY_B = Type.KEYSYM.getOrCreate(66);
-        KEY_R = Type.KEYSYM.getOrCreate(82);
-        KEY_U = Type.KEYSYM.getOrCreate(85);
-        lastScreen = null;
-        savedJumpKey = null;
-        jumpUnbound = false;
-    }
-
-    @EventBusSubscriber(
-            modid = "secondarykey",
-            bus = Bus.MOD,
-            value = {Dist.CLIENT}
-    )
+    @EventBusSubscriber(modid = SecondaryKey.MODID, bus = Bus.MOD, value = {Dist.CLIENT})
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent e) {
             e.register(Keybinding.SecondaryGameBKey);
-            e.register(Keybinding.SecondaryGuiEscKey);
-            e.register(Keybinding.SecondaryGuiMouseLeftKey);
-            e.register(Keybinding.SecondaryGuiMouseRightKey);
+            e.register(SecondaryGuiEscKey);
+            e.register(SecondaryGuiMouseLeftKey);
+            e.register(SecondaryGuiMouseRightKey);
             e.register(Keybinding.SecondaryGuiRKey);
             e.register(Keybinding.SecondaryGuiUKey);
             e.register(Keybinding.SecondaryEpicFightMineMineKey);
@@ -77,37 +67,39 @@ public class SecondaryKeyClient {
         }
     }
 
-    @EventBusSubscriber(
-            modid = "secondarykey",
-            value = {Dist.CLIENT}
-    )
+    @EventBusSubscriber(modid = SecondaryKey.MODID, value = {Dist.CLIENT})
     public static class ClientForgeEvents {
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key e) {
             Minecraft mc = Minecraft.getInstance();
-            if (Keybinding.SecondaryGameBKey.consumeClick() && mc.screen == null && SecondaryKeyClient.isInGame(mc)) {
+            if (Keybinding.SecondaryGameBKey.consumeClick() && mc.screen == null && isInGame(mc)) {
                 KeyboardUtil.clickKey(SecondaryKeyClient.KEY_B);
             }
 
             int key = e.getKey();
-            if (mc.screen != null && SecondaryKeyClient.isInGame(mc)) {
+            if (mc.screen != null && isInGame(mc)) {
                 if (mc.screen instanceof KeyBindsScreen) {
                     return;
                 }
 
                 LogUtil.i("onKeyInput. screen {}, key {}", new Object[]{mc.screen, key});
-                if (key == Keybinding.SecondaryGuiEscKey.getKey().getValue() || key == Keybinding.SecondaryGuiMouseLeftKey.getKey().getValue() || key == Keybinding.SecondaryGuiMouseRightKey.getKey().getValue()) {
+                if (key == SecondaryGuiEscKey.getKey().getValue()
+                        || key == SecondaryGuiMouseLeftKey.getKey().getValue()
+                        || key == SecondaryGuiMouseRightKey.getKey().getValue()) {
+
                     if (e.isCancelable()) {
                         e.setCanceled(true);
                     }
 
                     KeyMapping.set(Type.KEYSYM.getOrCreate(key), false);
-                    if (mc.options != null) {
-                        KeyMapping.set(mc.options.keyJump.getKey(), false);
-                    }
+                    KeyMapping.set(mc.options.keyJump.getKey(), false);
                 }
-            } else if (mc.screen == null && SecondaryKeyClient.isInGame(mc) && key == Keybinding.SecondaryGuiMouseLeftKey.getKey().getValue() && mc.options.keyJump.getKey() == InputConstants.UNKNOWN) {
-                mc.options.keyJump.setKey(Keybinding.SecondaryGuiMouseLeftKey.getKey());
+            } else if (mc.screen == null
+                    && isInGame(mc)
+                    && key == SecondaryGuiMouseLeftKey.getKey().getValue()
+                    && mc.options.keyJump.getKey() == InputConstants.UNKNOWN) {
+
+                mc.options.keyJump.setKey(SecondaryGuiMouseLeftKey.getKey());
                 KeyMapping.resetMapping();
                 LogUtil.i("Jump key was UNKNOWN, set to SecondaryGuiMouseLeftKey", new Object[0]);
             }
@@ -116,109 +108,108 @@ public class SecondaryKeyClient {
 
         @SubscribeEvent
         public static void onKeyPressedInUI(ScreenEvent.KeyPressed.Pre e) {
-            if (!(e.getScreen() instanceof KeyBindsScreen)) {
-                int keyCode = e.getKeyCode();
-                if (keyCode == Keybinding.SecondaryGuiEscKey.getKey().getValue()) {
-                    e.getScreen().onClose();
-                    e.setCanceled(true);
-                } else if (keyCode == Keybinding.SecondaryGuiRKey.getKey().getValue()) {
-                    KeyboardUtil.clickKey(SecondaryKeyClient.KEY_R);
-                    e.setCanceled(true);
-                } else if (keyCode == Keybinding.SecondaryGuiUKey.getKey().getValue()) {
-                    KeyboardUtil.clickKey(SecondaryKeyClient.KEY_U);
-                    e.setCanceled(true);
-                } else if (keyCode == Keybinding.SecondaryGuiMouseLeftKey.getKey().getValue()) {
-                    if (!SecondaryKeyClient.EMU_LEFT_DOWN) {
-                        MouseUtil.pressMouseKey(0);
-                        SecondaryKeyClient.EMU_LEFT_DOWN = true;
+            if (e.getScreen() instanceof KeyBindsScreen) return;
+
+            int keyCode = e.getKeyCode();
+            if (keyCode == SecondaryGuiEscKey.getKey().getValue()) {
+                e.getScreen().onClose();
+                e.setCanceled(true);
+
+            } else if (keyCode == Keybinding.SecondaryGuiRKey.getKey().getValue()) {
+                KeyboardUtil.clickKey(KEY_R);
+                e.setCanceled(true);
+
+            } else if (keyCode == Keybinding.SecondaryGuiUKey.getKey().getValue()) {
+                KeyboardUtil.clickKey(KEY_U);
+                e.setCanceled(true);
+
+            } else if (keyCode == SecondaryGuiMouseLeftKey.getKey().getValue()) {
+                if (!EMU_LEFT_DOWN) {
+                    MouseUtil.pressMouseKey(GLFW.GLFW_MOUSE_BUTTON_LEFT);
+                    EMU_LEFT_DOWN = true;
+                }
+
+                e.setCanceled(true);
+            } else {
+                if (keyCode == SecondaryGuiMouseRightKey.getKey().getValue()) {
+                    if (!EMU_RIGHT_DOWN) {
+                        MouseUtil.pressMouseKey(GLFW.GLFW_MOUSE_BUTTON_RIGHT);
+                        EMU_RIGHT_DOWN = true;
                     }
-
                     e.setCanceled(true);
-                } else {
-                    if (keyCode == Keybinding.SecondaryGuiMouseRightKey.getKey().getValue()) {
-                        if (!SecondaryKeyClient.EMU_RIGHT_DOWN) {
-                            MouseUtil.pressMouseKey(1);
-                            SecondaryKeyClient.EMU_RIGHT_DOWN = true;
-                        }
-
-                        e.setCanceled(true);
-                    }
-
                 }
             }
         }
 
         @SubscribeEvent
         public static void onKeyReleasedInUI(ScreenEvent.KeyReleased.Pre e) {
-            if (!(e.getScreen() instanceof KeyBindsScreen)) {
-                int keyCode = e.getKeyCode();
-                if (keyCode == Keybinding.SecondaryGuiMouseLeftKey.getKey().getValue()) {
-                    if (SecondaryKeyClient.EMU_LEFT_DOWN) {
-                        MouseUtil.releaseMouseKey(0);
-                        SecondaryKeyClient.EMU_LEFT_DOWN = false;
-                    }
+            if (e.getScreen() instanceof KeyBindsScreen) return;
 
-                    e.setCanceled(true);
-                } else if (keyCode == Keybinding.SecondaryGuiMouseRightKey.getKey().getValue()) {
-                    if (SecondaryKeyClient.EMU_RIGHT_DOWN) {
-                        MouseUtil.releaseMouseKey(1);
-                        SecondaryKeyClient.EMU_RIGHT_DOWN = false;
-                    }
-
-                    e.setCanceled(true);
+            int keyCode = e.getKeyCode();
+            if (keyCode == SecondaryGuiMouseLeftKey.getKey().getValue()) {
+                if (EMU_LEFT_DOWN) {
+                    MouseUtil.releaseMouseKey(GLFW.GLFW_MOUSE_BUTTON_LEFT);
+                    EMU_LEFT_DOWN = false;
                 }
 
+                e.setCanceled(true);
+            } else if (keyCode == SecondaryGuiMouseRightKey.getKey().getValue()) {
+                if (EMU_RIGHT_DOWN) {
+                    MouseUtil.releaseMouseKey(GLFW.GLFW_MOUSE_BUTTON_RIGHT);
+                    EMU_RIGHT_DOWN = false;
+                }
+
+                e.setCanceled(true);
             }
+
         }
 
         @SubscribeEvent
         public static void onClientTick(TickEvent.ClientTickEvent e) {
-            if (e.phase == Phase.END) {
-                Minecraft mc = Minecraft.getInstance();
-                if (mc.options != null) {
-                    boolean inGame = SecondaryKeyClient.isInGame(mc);
-                    Screen cur = mc.screen;
-                    LogUtil.i("screen = {}, player = {}, level = {}", new Object[]{cur != null ? cur.toString() : null, mc.player, mc.level});
-                    if (!inGame) {
-                        if (SecondaryKeyClient.jumpUnbound && SecondaryKeyClient.savedJumpKey != null) {
-                            mc.options.keyJump.setKey(SecondaryKeyClient.savedJumpKey);
+            if (e.phase != Phase.END) return;
+
+            Minecraft mc = Minecraft.getInstance();
+
+            boolean inGame = isInGame(mc);
+            Screen cur = mc.screen;
+            LogUtil.i("screen = {}, player = {}, level = {}", new Object[]{cur != null ? cur.toString() : null, mc.player, mc.level});
+            if (!inGame) {
+                if (jumpUnbound && savedJumpKey != null) {
+                    mc.options.keyJump.setKey(savedJumpKey);
+                    KeyMapping.resetMapping();
+                    jumpUnbound = false;
+                    savedJumpKey = null;
+                    LogUtil.i("Jump key restored (out of game)", new Object[0]);
+                }
+
+                lastScreen = cur;
+            } else {
+                if (cur != lastScreen) {
+                    if (cur != null) {
+                        InputConstants.Key jumpKey = mc.options.keyJump.getKey();
+                        boolean sameAsLeft = jumpKey.equals(SecondaryGuiMouseLeftKey.getKey());
+                        boolean sameAsRight = jumpKey.equals(SecondaryGuiMouseRightKey.getKey());
+                        LogUtil.d("mc.screen {}, isPauseScreen {}", new Object[]{mc.screen, mc.screen.isPauseScreen()});
+                        if (!jumpUnbound && (sameAsLeft || sameAsRight) && !mc.screen.isPauseScreen()) {
+                            savedJumpKey = jumpKey;
+                            mc.options.keyJump.setKey(InputConstants.UNKNOWN);
                             KeyMapping.resetMapping();
-                            SecondaryKeyClient.jumpUnbound = false;
-                            SecondaryKeyClient.savedJumpKey = null;
-                            LogUtil.i("Jump key restored (out of game)", new Object[0]);
+                            jumpUnbound = true;
+                            LogUtil.i("Jump temporarily unbound while GUI open (conflicts with secondary mouse key)", new Object[0]);
                         }
-
-                        SecondaryKeyClient.lastScreen = cur;
-                    } else {
-                        if (cur != SecondaryKeyClient.lastScreen) {
-                            if (cur != null) {
-                                InputConstants.Key jumpKey = mc.options.keyJump.getKey();
-                                boolean sameAsLeft = jumpKey.equals(Keybinding.SecondaryGuiMouseLeftKey.getKey());
-                                boolean sameAsRight = jumpKey.equals(Keybinding.SecondaryGuiMouseRightKey.getKey());
-                                LogUtil.d("mc.screen {}, isPauseScreen {}", new Object[]{mc.screen, mc.screen.isPauseScreen()});
-                                if (!SecondaryKeyClient.jumpUnbound && (sameAsLeft || sameAsRight) && !mc.screen.isPauseScreen()) {
-                                    SecondaryKeyClient.savedJumpKey = jumpKey;
-                                    mc.options.keyJump.setKey(InputConstants.UNKNOWN);
-                                    KeyMapping.resetMapping();
-                                    SecondaryKeyClient.jumpUnbound = true;
-                                    LogUtil.i("Jump temporarily unbound while GUI open (conflicts with secondary mouse key)", new Object[0]);
-                                }
-                            } else if (SecondaryKeyClient.jumpUnbound && SecondaryKeyClient.savedJumpKey != null) {
-                                mc.options.keyJump.setKey(SecondaryKeyClient.savedJumpKey);
-                                KeyMapping.resetMapping();
-                                SecondaryKeyClient.jumpUnbound = false;
-                                SecondaryKeyClient.savedJumpKey = null;
-                                LogUtil.i("Jump key restored after GUI closed", new Object[0]);
-                            }
-
-                            SecondaryKeyClient.lastScreen = cur;
-                        }
-
-                        if (cur != null) {
-                            KeyMapping.set(mc.options.keyJump.getKey(), false);
-                        }
-
+                    } else if (jumpUnbound && savedJumpKey != null) {
+                        mc.options.keyJump.setKey(savedJumpKey);
+                        KeyMapping.resetMapping();
+                        jumpUnbound = false;
+                        savedJumpKey = null;
+                        LogUtil.i("Jump key restored after GUI closed", new Object[0]);
                     }
+
+                    lastScreen = cur;
+                }
+
+                if (cur != null) {
+                    KeyMapping.set(mc.options.keyJump.getKey(), false);
                 }
             }
         }

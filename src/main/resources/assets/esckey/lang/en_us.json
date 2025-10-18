@@ -1,7 +1,11 @@
 {
-	"key.categories.secondary.bind": "Secondary Key",
-	"key.secondary.gui.esc": "Secondary Escape key in GUI",
-	"key.secondary.gui.mouse.left": "Secondary mouse Left in GUI",
-	"key.secondary.gui.mouse.right": "Secondary mouse right in GUI",
-	"key.secondary.game.b": "Secondary B key In Game"
+  "key.categories.secondary.bind": "Secondary Key",
+  "key.secondary.gui.esc": "Secondary Escape key in GUI",
+  "key.secondary.game.b": "Secondary B key In Game",
+  "key.secondary.gui.mouse.left": "Secondary mouse Left in GUI",
+  "key.secondary.gui.mouse.right": "Secondary mouse right in GUI",
+  "key.secondary.gui.r": "Secondary R key in GUI",
+  "key.secondary.gui.u": "Secondary U Key in GUI",
+  "compact.epicfight.mine.mineKey": "Mine key in mine mode",
+  "compact.epicfight.battle.mineKey": "Mine key in battle mode"
 }

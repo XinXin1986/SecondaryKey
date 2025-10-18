@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package com.ifels.secondary.key.util;
 
 import com.mojang.blaze3d.platform.Window;

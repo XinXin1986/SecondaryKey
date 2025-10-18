@@ -20,9 +20,7 @@ public class EpicFightCompat {
         switchMiningKeyBinding(battleMode);
     }
 
-    @SubscribeEvent(
-            priority = EventPriority.LOWEST
-    )
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onPlayerModeChange(ChangePlayerModeEvent event) {
         if (event.isCanceled()) {
             return;
