@@ -28,9 +28,9 @@ import org.lwjgl.glfw.GLFW;
 import static com.ifels.secondary.key.client.Keybinding.*;
 
 public class SecondaryKeyClient {
-    private static final InputConstants.Key KEY_B = Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_B);
     private static final InputConstants.Key KEY_R = Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_R);
     private static final InputConstants.Key KEY_U = Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_U);
+
     private static boolean EMU_LEFT_DOWN = false;
     private static boolean EMU_RIGHT_DOWN = false;
     private static Screen lastScreen = null;
@@ -45,14 +45,12 @@ public class SecondaryKeyClient {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent e) {
-            e.register(Keybinding.SecondaryGameBKey);
+            KeyEventInGameHandler.registerKeyMapping(e);
             e.register(SecondaryGuiEscKey);
             e.register(SecondaryGuiMouseLeftKey);
             e.register(SecondaryGuiMouseRightKey);
             e.register(Keybinding.SecondaryGuiRKey);
             e.register(Keybinding.SecondaryGuiUKey);
-            e.register(Keybinding.SecondaryEpicFightMineMineKey);
-            e.register(Keybinding.SecondaryEpicFightBattleMineKey);
         }
 
         @SubscribeEvent
@@ -72,11 +70,14 @@ public class SecondaryKeyClient {
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key e) {
             Minecraft mc = Minecraft.getInstance();
-            if (Keybinding.SecondaryGameBKey.consumeClick() && mc.screen == null && isInGame(mc)) {
-                KeyboardUtil.clickKey(SecondaryKeyClient.KEY_B);
+            int key = e.getKey();
+
+            if (mc.screen == null && isInGame(mc)) {
+                if (KeyEventInGameHandler.handleKeyEventInGame(e)) {
+                    return;
+                }
             }
 
-            int key = e.getKey();
             if (mc.screen != null && isInGame(mc)) {
                 if (mc.screen instanceof KeyBindsScreen) {
                     return;

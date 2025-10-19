@@ -8,7 +8,21 @@ import org.lwjgl.glfw.GLFW;
 
 public class Keybinding {
     public static final String KEY_CATEGORY_SECONDARY = "key.categories.secondary.bind";
+
     public static final String KEY_SECONDARY_GAME_B = "key.secondary.game.b";
+    public static final String KEY_SECONDARY_GAME_A = "key.secondary.game.a";
+    public static final String KEY_SECONDARY_GAME_W = "key.secondary.game.w";
+    public static final String KEY_SECONDARY_GAME_S = "key.secondary.game.s";
+    public static final String KEY_SECONDARY_GAME_D = "key.secondary.game.d";
+
+    public static final String KEY_SECONDARY_GAME_1 = "key.secondary.game.1";
+    public static final String KEY_SECONDARY_GAME_2 = "key.secondary.game.2";
+    public static final String KEY_SECONDARY_GAME_3 = "key.secondary.game.3";
+
+    public static final String KEY_SECONDARY_GAME_KP1 = "key.secondary.game.kp1";
+    public static final String KEY_SECONDARY_GAME_KP2 = "key.secondary.game.kp2";
+    public static final String KEY_SECONDARY_GAME_KP3 = "key.secondary.game.kp3";
+
     public static final String KEY_SECONDARY_GUI_ESC = "key.secondary.gui.esc";
     public static final String KEY_SECONDARY_GUI_M_LEFT = "key.secondary.gui.mouse.left";
     public static final String KEY_SECONDARY_GUI_M_RIGHT = "key.secondary.gui.mouse.right";
@@ -22,6 +36,38 @@ public class Keybinding {
             KeyConflictContext.IN_GAME,
             Type.KEYSYM,
             GLFW.GLFW_KEY_PAGE_UP,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameAKey = new KeyMapping(
+            KEY_SECONDARY_GAME_A,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameWKey = new KeyMapping(
+            KEY_SECONDARY_GAME_W,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameSKey = new KeyMapping(
+            KEY_SECONDARY_GAME_S,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameDKey = new KeyMapping(
+            KEY_SECONDARY_GAME_D,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
             KEY_CATEGORY_SECONDARY
     );
 
