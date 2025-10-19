@@ -15,13 +15,12 @@ public class Keybinding {
     public static final String KEY_SECONDARY_GAME_S = "key.secondary.game.s";
     public static final String KEY_SECONDARY_GAME_D = "key.secondary.game.d";
 
-    public static final String KEY_SECONDARY_GAME_1 = "key.secondary.game.1";
-    public static final String KEY_SECONDARY_GAME_2 = "key.secondary.game.2";
-    public static final String KEY_SECONDARY_GAME_3 = "key.secondary.game.3";
-
-    public static final String KEY_SECONDARY_GAME_KP1 = "key.secondary.game.kp1";
-    public static final String KEY_SECONDARY_GAME_KP2 = "key.secondary.game.kp2";
-    public static final String KEY_SECONDARY_GAME_KP3 = "key.secondary.game.kp3";
+    public static final String KEY_SECONDARY_GAME_N1 = "key.secondary.game.n1";
+    public static final String KEY_SECONDARY_GAME_N2 = "key.secondary.game.n2";
+    public static final String KEY_SECONDARY_GAME_N3 = "key.secondary.game.n3";
+    public static final String KEY_SECONDARY_GAME_N4 = "key.secondary.game.n4";
+    public static final String KEY_SECONDARY_GAME_N5 = "key.secondary.game.n5";
+    public static final String KEY_SECONDARY_GAME_N6 = "key.secondary.game.n6";
 
     public static final String KEY_SECONDARY_GUI_ESC = "key.secondary.gui.esc";
     public static final String KEY_SECONDARY_GUI_M_LEFT = "key.secondary.gui.mouse.left";
@@ -65,6 +64,54 @@ public class Keybinding {
 
     public static final KeyMapping SecondaryGameDKey = new KeyMapping(
             KEY_SECONDARY_GAME_D,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameN1Key = new KeyMapping(
+            KEY_SECONDARY_GAME_N1,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameN2Key = new KeyMapping(
+            KEY_SECONDARY_GAME_N2,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameN3Key = new KeyMapping(
+            KEY_SECONDARY_GAME_N3,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameN4Key = new KeyMapping(
+            KEY_SECONDARY_GAME_N4,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameN5Key = new KeyMapping(
+            KEY_SECONDARY_GAME_N5,
+            KeyConflictContext.IN_GAME,
+            Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameN6Key = new KeyMapping(
+            KEY_SECONDARY_GAME_N6,
             KeyConflictContext.IN_GAME,
             Type.KEYSYM,
             GLFW.GLFW_KEY_UNKNOWN,

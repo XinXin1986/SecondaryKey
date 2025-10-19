@@ -18,14 +18,21 @@ public class KeyEventInGameHandler {
     private static final InputConstants.Key KEY_S = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_S);
     private static final InputConstants.Key KEY_D = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_D);
 
-    private static final InputConstants.Key KEY_1 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_1);
-    private static final InputConstants.Key KEY_2 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_2);
-    private static final InputConstants.Key KEY_3 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_3);
-    private static final InputConstants.Key KEY_KP_1 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_KP_1);
-    private static final InputConstants.Key KEY_KP_2 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_KP_2);
-    private static final InputConstants.Key KEY_KP_3 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_KP_3);
+    private static final InputConstants.Key KEY_N1 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_1);
+    private static final InputConstants.Key KEY_N2 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_2);
+    private static final InputConstants.Key KEY_N3 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_3);
+    private static final InputConstants.Key KEY_N4 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_4);
+    private static final InputConstants.Key KEY_N5 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_5);
+    private static final InputConstants.Key KEY_N6 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_6);
 
     public static void registerKeyMapping(RegisterKeyMappingsEvent e) {
+        e.register(Keybinding.SecondaryGameN1Key);
+        e.register(Keybinding.SecondaryGameN2Key);
+        e.register(Keybinding.SecondaryGameN3Key);
+        e.register(Keybinding.SecondaryGameN4Key);
+        e.register(Keybinding.SecondaryGameN5Key);
+        e.register(Keybinding.SecondaryGameN6Key);
+
         e.register(Keybinding.SecondaryGameBKey);
         e.register(Keybinding.SecondaryGameAKey);
         e.register(Keybinding.SecondaryGameWKey);
@@ -36,7 +43,7 @@ public class KeyEventInGameHandler {
     }
 
     public static boolean handleKeyEventInGame(InputEvent.Key e) {
-        if (SecondaryGameBKey.consumeClick()) {
+        if (isMatchKey(e, SecondaryGameAKey)) {
             LogUtil.i("isMatchKey SecondaryGameBKey..");
             if (e.getAction() == InputConstants.PRESS) {
                 KeyboardUtil.pressKey(KEY_B, false);
@@ -78,6 +85,60 @@ public class KeyEventInGameHandler {
                 KeyboardUtil.pressKey(KEY_D, false);
             } else if (e.getAction() == InputConstants.RELEASE) {
                 KeyboardUtil.releaseKey(KEY_D, false);
+            }
+            return true;
+
+        } else if (isMatchKey(e, SecondaryGameN1Key)) {
+            LogUtil.i("isMatchKey SecondaryGameN1Key..");
+            if (e.getAction() == InputConstants.PRESS) {
+                KeyboardUtil.pressKey(KEY_N1, false);
+            } else if (e.getAction() == InputConstants.RELEASE) {
+                KeyboardUtil.releaseKey(KEY_N1, false);
+            }
+            return true;
+
+        } else if (isMatchKey(e, SecondaryGameN2Key)) {
+            LogUtil.i("isMatchKey SecondaryGameN2Key..");
+            if (e.getAction() == InputConstants.PRESS) {
+                KeyboardUtil.pressKey(KEY_N2, false);
+            } else if (e.getAction() == InputConstants.RELEASE) {
+                KeyboardUtil.releaseKey(KEY_N2, false);
+            }
+            return true;
+
+        } else if (isMatchKey(e, SecondaryGameN3Key)) {
+            LogUtil.i("isMatchKey SecondaryGameN3Key..");
+            if (e.getAction() == InputConstants.PRESS) {
+                KeyboardUtil.pressKey(KEY_N3, false);
+            } else if (e.getAction() == InputConstants.RELEASE) {
+                KeyboardUtil.releaseKey(KEY_N3, false);
+            }
+            return true;
+
+        } else if (isMatchKey(e, SecondaryGameN4Key)) {
+            LogUtil.i("isMatchKey SecondaryGameN4Key..");
+            if (e.getAction() == InputConstants.PRESS) {
+                KeyboardUtil.pressKey(KEY_N4, false);
+            } else if (e.getAction() == InputConstants.RELEASE) {
+                KeyboardUtil.releaseKey(KEY_N4, false);
+            }
+            return true;
+
+        } else if (isMatchKey(e, SecondaryGameN5Key)) {
+            LogUtil.i("isMatchKey SecondaryGameN5Key..");
+            if (e.getAction() == InputConstants.PRESS) {
+                KeyboardUtil.pressKey(KEY_N5, false);
+            } else if (e.getAction() == InputConstants.RELEASE) {
+                KeyboardUtil.releaseKey(KEY_N5, false);
+            }
+            return true;
+
+        } else if (isMatchKey(e, SecondaryGameN6Key)) {
+            LogUtil.i("isMatchKey SecondaryGameN6Key..");
+            if (e.getAction() == InputConstants.PRESS) {
+                KeyboardUtil.pressKey(KEY_N6, false);
+            } else if (e.getAction() == InputConstants.RELEASE) {
+                KeyboardUtil.releaseKey(KEY_N6, false);
             }
             return true;
         }
