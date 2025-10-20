@@ -1,6 +1,6 @@
 package com.ifels.secondary.key.compat;
 
-import com.ifels.secondary.key.client.Keybinding;
+import com.ifels.secondary.key.client.KeyEventInGameHandler;
 import com.ifels.secondary.key.util.LogUtil;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -55,7 +55,7 @@ public class EpicFightCompat {
     public static void switchMiningKeyBinding(boolean battleMode) {
         Minecraft mc = Minecraft.getInstance();
         LogUtil.i("switchMiningAttackKeyBinding isBattleMode {}", new Object[]{battleMode});
-        KeyMapping kepMapping = battleMode ? Keybinding.SecondaryEpicFightBattleMineKey : Keybinding.SecondaryEpicFightMineMineKey;
+        KeyMapping kepMapping = battleMode ? KeyEventInGameHandler.SecondaryEpicFightBattleMineKey : KeyEventInGameHandler.SecondaryEpicFightMineMineKey;
         mc.options.keyAttack.setKeyModifierAndCode(kepMapping.getKeyModifier(), kepMapping.getKey());
     }
 }

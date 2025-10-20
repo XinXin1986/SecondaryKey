@@ -15,12 +15,18 @@ public class Keybinding {
     public static final String KEY_SECONDARY_GAME_S = "key.secondary.game.s";
     public static final String KEY_SECONDARY_GAME_D = "key.secondary.game.d";
 
-    public static final String KEY_SECONDARY_GAME_N1 = "key.secondary.game.n1";
-    public static final String KEY_SECONDARY_GAME_N2 = "key.secondary.game.n2";
-    public static final String KEY_SECONDARY_GAME_N3 = "key.secondary.game.n3";
-    public static final String KEY_SECONDARY_GAME_N4 = "key.secondary.game.n4";
-    public static final String KEY_SECONDARY_GAME_N5 = "key.secondary.game.n5";
-    public static final String KEY_SECONDARY_GAME_N6 = "key.secondary.game.n6";
+    public static final String KEY_SECONDARY_GAME_F13 = "key.secondary.game.F13";
+    public static final String KEY_SECONDARY_GAME_F14 = "key.secondary.game.F14";
+    public static final String KEY_SECONDARY_GAME_F15 = "key.secondary.game.F15";
+    public static final String KEY_SECONDARY_GAME_F16 = "key.secondary.game.F16";
+    public static final String KEY_SECONDARY_GAME_F17 = "key.secondary.game.F17";
+    public static final String KEY_SECONDARY_GAME_F18 = "key.secondary.game.F18";
+    public static final String KEY_SECONDARY_GAME_F19 = "key.secondary.game.F19";
+    public static final String KEY_SECONDARY_GAME_F20 = "key.secondary.game.F20";
+    public static final String KEY_SECONDARY_GAME_F21 = "key.secondary.game.F21";
+    public static final String KEY_SECONDARY_GAME_F22 = "key.secondary.game.F22";
+    public static final String KEY_SECONDARY_GAME_F23 = "key.secondary.game.F23";
+    public static final String KEY_SECONDARY_GAME_F24 = "key.secondary.game.F24";
 
     public static final String KEY_SECONDARY_GUI_ESC = "key.secondary.gui.esc";
     public static final String KEY_SECONDARY_GUI_M_LEFT = "key.secondary.gui.mouse.left";
@@ -29,94 +35,6 @@ public class Keybinding {
     public static final String KEY_SECONDARY_GUI_U = "key.secondary.gui.u";
     public static final String KEY_SECONDARY_EPIC_FIGHT_MINE_MINE_KEY = "compact.epicfight.mine.mineKey";
     public static final String KEY_SECONDARY_EPIC_FIGHT_BATTLE_MINE_KEY = "compact.epicfight.battle.mineKey";
-
-    public static final KeyMapping SecondaryGameBKey = new KeyMapping(
-            KEY_SECONDARY_GAME_B,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_PAGE_UP,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameAKey = new KeyMapping(
-            KEY_SECONDARY_GAME_A,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameWKey = new KeyMapping(
-            KEY_SECONDARY_GAME_W,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameSKey = new KeyMapping(
-            KEY_SECONDARY_GAME_S,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameDKey = new KeyMapping(
-            KEY_SECONDARY_GAME_D,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameN1Key = new KeyMapping(
-            KEY_SECONDARY_GAME_N1,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameN2Key = new KeyMapping(
-            KEY_SECONDARY_GAME_N2,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameN3Key = new KeyMapping(
-            KEY_SECONDARY_GAME_N3,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameN4Key = new KeyMapping(
-            KEY_SECONDARY_GAME_N4,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameN5Key = new KeyMapping(
-            KEY_SECONDARY_GAME_N5,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
-
-    public static final KeyMapping SecondaryGameN6Key = new KeyMapping(
-            KEY_SECONDARY_GAME_N6,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
 
     public static final KeyMapping SecondaryGuiEscKey = new KeyMapping(
             KEY_SECONDARY_GUI_ESC,
@@ -159,20 +77,6 @@ public class Keybinding {
             KEY_CATEGORY_SECONDARY
     );
 
-    public static final KeyMapping SecondaryEpicFightMineMineKey = new KeyMapping(
-            KEY_SECONDARY_EPIC_FIGHT_MINE_MINE_KEY,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_RIGHT_ALT,
-            KEY_CATEGORY_SECONDARY
-    );
 
-    public static final KeyMapping SecondaryEpicFightBattleMineKey = new KeyMapping(
-            KEY_SECONDARY_EPIC_FIGHT_BATTLE_MINE_KEY,
-            KeyConflictContext.IN_GAME,
-            Type.KEYSYM,
-            GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY_SECONDARY
-    );
 
 }
