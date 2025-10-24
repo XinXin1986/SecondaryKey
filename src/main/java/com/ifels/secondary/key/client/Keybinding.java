@@ -15,18 +15,14 @@ public class Keybinding {
     public static final String KEY_SECONDARY_GAME_S = "key.secondary.game.s";
     public static final String KEY_SECONDARY_GAME_D = "key.secondary.game.d";
 
-    public static final String KEY_SECONDARY_GAME_F13 = "key.secondary.game.F13";
-    public static final String KEY_SECONDARY_GAME_F14 = "key.secondary.game.F14";
-    public static final String KEY_SECONDARY_GAME_F15 = "key.secondary.game.F15";
-    public static final String KEY_SECONDARY_GAME_F16 = "key.secondary.game.F16";
-    public static final String KEY_SECONDARY_GAME_F17 = "key.secondary.game.F17";
-    public static final String KEY_SECONDARY_GAME_F18 = "key.secondary.game.F18";
-    public static final String KEY_SECONDARY_GAME_F19 = "key.secondary.game.F19";
-    public static final String KEY_SECONDARY_GAME_F20 = "key.secondary.game.F20";
-    public static final String KEY_SECONDARY_GAME_F21 = "key.secondary.game.F21";
-    public static final String KEY_SECONDARY_GAME_F22 = "key.secondary.game.F22";
-    public static final String KEY_SECONDARY_GAME_F23 = "key.secondary.game.F23";
-    public static final String KEY_SECONDARY_GAME_F24 = "key.secondary.game.F24";
+    public static final String KEY_SECONDARY_GAME_F10 = "key.secondary.game.F10";
+    public static final String KEY_SECONDARY_GAME_F12 = "key.secondary.game.F12";
+    public static final String KEY_SECONDARY_GAME_ENTER = "key.secondary.game.enter";
+    public static final String KEY_SECONDARY_GAME_TAB = "key.secondary.game.tab";
+    public static final String KEY_SECONDARY_GAME_CAPSLOCK = "key.secondary.game.capslock";
+    public static final String KEY_SECONDARY_GAME_BACKSPACE = "key.secondary.game.backspace";
+    public static final String KEY_SECONDARY_GAME_DELETE = "key.secondary.game.delete";
+    public static final String KEY_SECONDARY_GAME_INSERT = "key.secondary.game.insert";
 
     public static final String KEY_SECONDARY_GUI_ESC = "key.secondary.gui.esc";
     public static final String KEY_SECONDARY_GUI_M_LEFT = "key.secondary.gui.mouse.left";

@@ -20,18 +20,14 @@ public class KeyEventInGameHandler {
     private static final InputConstants.Key KEY_S = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_S);
     private static final InputConstants.Key KEY_D = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_D);
 
-    private static final InputConstants.Key KEY_F13 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F13);
-    private static final InputConstants.Key KEY_F14 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F14);
-    private static final InputConstants.Key KEY_F15 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F15);
-    private static final InputConstants.Key KEY_F16 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F16);
-    private static final InputConstants.Key KEY_F17 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F17);
-    private static final InputConstants.Key KEY_F18 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F18);
-    private static final InputConstants.Key KEY_F19 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F19);
-    private static final InputConstants.Key KEY_F20 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F20);
-    private static final InputConstants.Key KEY_F21 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F21);
-    private static final InputConstants.Key KEY_F22 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F22);
-    private static final InputConstants.Key KEY_F23 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F23);
-    private static final InputConstants.Key KEY_F24 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F24);
+    private static final InputConstants.Key KEY_ENTER = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_ENTER);
+    private static final InputConstants.Key KEY_BACKSPACE = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_BACKSPACE);
+    private static final InputConstants.Key KEY_TAB = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_TAB);
+    private static final InputConstants.Key KEY_CAPS_LOCK = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_CAPS_LOCK);
+    private static final InputConstants.Key KEY_INSERT = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_INSERT);
+    private static final InputConstants.Key KEY_DELETE = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_DELETE);
+    private static final InputConstants.Key KEY_F10 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F10);
+    private static final InputConstants.Key KEY_F12 = InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F12);
 
     public static final KeyMapping SecondaryEpicFightMineMineKey = new KeyMapping(
             KEY_SECONDARY_EPIC_FIGHT_MINE_MINE_KEY,
@@ -89,48 +85,64 @@ public class KeyEventInGameHandler {
             KEY_CATEGORY_SECONDARY
     );
 
-    public static final KeyMapping SecondaryGameF13Key = new KeyMapping(
-            KEY_SECONDARY_GAME_F13,
+    public static final KeyMapping SecondaryGameF10Key = new KeyMapping(
+            KEY_SECONDARY_GAME_F10,
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_UNKNOWN,
             KEY_CATEGORY_SECONDARY
     );
 
-    public static final KeyMapping SecondaryGameF14Key = new KeyMapping(
-            KEY_SECONDARY_GAME_F14,
+    public static final KeyMapping SecondaryGameF12Key = new KeyMapping(
+            KEY_SECONDARY_GAME_F12,
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_UNKNOWN,
             KEY_CATEGORY_SECONDARY
     );
 
-    public static final KeyMapping SecondaryGameF15Key = new KeyMapping(
-            KEY_SECONDARY_GAME_F15,
+    public static final KeyMapping SecondaryGameEnterKey = new KeyMapping(
+            KEY_SECONDARY_GAME_ENTER,
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_UNKNOWN,
             KEY_CATEGORY_SECONDARY
     );
 
-    public static final KeyMapping SecondaryGameF16Key = new KeyMapping(
-            KEY_SECONDARY_GAME_F16,
+    public static final KeyMapping SecondaryGameBackspaceKey = new KeyMapping(
+            KEY_SECONDARY_GAME_BACKSPACE,
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_UNKNOWN,
             KEY_CATEGORY_SECONDARY
     );
 
-    public static final KeyMapping SecondaryGameF17Key = new KeyMapping(
-            KEY_SECONDARY_GAME_F17,
+    public static final KeyMapping SecondaryGameTabKey = new KeyMapping(
+            KEY_SECONDARY_GAME_TAB,
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_UNKNOWN,
             KEY_CATEGORY_SECONDARY
     );
 
-    public static final KeyMapping SecondaryGameF18Key = new KeyMapping(
-            KEY_SECONDARY_GAME_F18,
+    public static final KeyMapping SecondaryGameCapslockKey = new KeyMapping(
+            KEY_SECONDARY_GAME_CAPSLOCK,
+            KeyConflictContext.IN_GAME,
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameDeleteKey = new KeyMapping(
+            KEY_SECONDARY_GAME_DELETE,
+            KeyConflictContext.IN_GAME,
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY_SECONDARY
+    );
+
+    public static final KeyMapping SecondaryGameInsertKey = new KeyMapping(
+            KEY_SECONDARY_GAME_INSERT,
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_UNKNOWN,
@@ -138,12 +150,13 @@ public class KeyEventInGameHandler {
     );
 
     public static void registerKeyMapping(RegisterKeyMappingsEvent e) {
-        e.register(SecondaryGameF13Key);
-        e.register(SecondaryGameF14Key);
-        e.register(SecondaryGameF15Key);
-        e.register(SecondaryGameF16Key);
-        e.register(SecondaryGameF17Key);
-        e.register(SecondaryGameF18Key);
+        e.register(SecondaryGameF10Key);
+        e.register(SecondaryGameF12Key);
+        e.register(SecondaryGameEnterKey);
+        e.register(SecondaryGameTabKey);
+        e.register(SecondaryGameCapslockKey);
+        e.register(SecondaryGameInsertKey);
+        e.register(SecondaryGameDeleteKey);
 
         e.register(SecondaryGameBKey);
         e.register(SecondaryGameAKey);
@@ -200,57 +213,66 @@ public class KeyEventInGameHandler {
             }
             return true;
 
-        } else if (isMatchKey(e, SecondaryGameF13Key)) {
-            LogUtil.i("isMatchKey SecondaryGameF13Key..");
+        } else if (isMatchKey(e, SecondaryGameF10Key)) {
+            LogUtil.i("isMatchKey SecondaryGameF10Key..");
             if (e.getAction() == InputConstants.PRESS) {
-                KeyboardUtil.pressKey(KEY_F13, false);
+                KeyboardUtil.pressKey(KEY_F10, false);
             } else if (e.getAction() == InputConstants.RELEASE) {
-                KeyboardUtil.releaseKey(KEY_F13, false);
+                KeyboardUtil.releaseKey(KEY_F10, false);
             }
             return true;
 
-        } else if (isMatchKey(e, SecondaryGameF14Key)) {
-            LogUtil.i("isMatchKey SecondaryGameF14Key..");
+        } else if (isMatchKey(e, SecondaryGameF12Key)) {
+            LogUtil.i("isMatchKey SecondaryGameF12Key..");
             if (e.getAction() == InputConstants.PRESS) {
-                KeyboardUtil.pressKey(KEY_F14, false);
+                KeyboardUtil.pressKey(KEY_F12, false);
             } else if (e.getAction() == InputConstants.RELEASE) {
-                KeyboardUtil.releaseKey(KEY_F14, false);
+                KeyboardUtil.releaseKey(KEY_F12, false);
             }
             return true;
 
-        } else if (isMatchKey(e, SecondaryGameF15Key)) {
-            LogUtil.i("isMatchKey SecondaryGameF15Key..");
+        } else if (isMatchKey(e, SecondaryGameEnterKey)) {
+            LogUtil.i("isMatchKey SecondaryGameEnterKey..");
             if (e.getAction() == InputConstants.PRESS) {
-                KeyboardUtil.pressKey(KEY_F15, false);
+                KeyboardUtil.pressKey(KEY_ENTER, false);
             } else if (e.getAction() == InputConstants.RELEASE) {
-                KeyboardUtil.releaseKey(KEY_F15, false);
+                KeyboardUtil.releaseKey(KEY_ENTER, false);
             }
             return true;
 
-        } else if (isMatchKey(e, SecondaryGameF16Key)) {
-            LogUtil.i("isMatchKey SecondaryGameF16Key..");
+        } else if (isMatchKey(e, SecondaryGameTabKey)) {
+            LogUtil.i("isMatchKey SecondaryGameTabKey..");
             if (e.getAction() == InputConstants.PRESS) {
-                KeyboardUtil.pressKey(KEY_F16, false);
+                KeyboardUtil.pressKey(KEY_TAB, false);
             } else if (e.getAction() == InputConstants.RELEASE) {
-                KeyboardUtil.releaseKey(KEY_F16, false);
+                KeyboardUtil.releaseKey(KEY_TAB, false);
             }
             return true;
 
-        } else if (isMatchKey(e, SecondaryGameF17Key)) {
-            LogUtil.i("isMatchKey SecondaryGameF17Key..");
+        } else if (isMatchKey(e, SecondaryGameCapslockKey)) {
+            LogUtil.i("isMatchKey SecondaryGameCapslockKey..");
             if (e.getAction() == InputConstants.PRESS) {
-                KeyboardUtil.pressKey(KEY_F17, false);
+                KeyboardUtil.pressKey(KEY_CAPS_LOCK, false);
             } else if (e.getAction() == InputConstants.RELEASE) {
-                KeyboardUtil.releaseKey(KEY_F17, false);
+                KeyboardUtil.releaseKey(KEY_CAPS_LOCK, false);
             }
             return true;
 
-        } else if (isMatchKey(e, SecondaryGameF18Key)) {
-            LogUtil.i("isMatchKey SecondaryGameF18Key..");
+        } else if (isMatchKey(e, SecondaryGameInsertKey)) {
+            LogUtil.i("isMatchKey SecondaryGameInsertKey..");
             if (e.getAction() == InputConstants.PRESS) {
-                KeyboardUtil.pressKey(KEY_F18, false);
+                KeyboardUtil.pressKey(KEY_INSERT, false);
             } else if (e.getAction() == InputConstants.RELEASE) {
-                KeyboardUtil.releaseKey(KEY_F18, false);
+                KeyboardUtil.releaseKey(KEY_INSERT, false);
+            }
+            return true;
+
+        } else if (isMatchKey(e, SecondaryGameDeleteKey)) {
+            LogUtil.i("isMatchKey SecondaryGameDeleteKey..");
+            if (e.getAction() == InputConstants.PRESS) {
+                KeyboardUtil.pressKey(KEY_DELETE, false);
+            } else if (e.getAction() == InputConstants.RELEASE) {
+                KeyboardUtil.releaseKey(KEY_DELETE, false);
             }
             return true;
         }
