@@ -155,6 +155,7 @@ public class KeyEventInGameHandler {
         e.register(SecondaryGameEnterKey);
         e.register(SecondaryGameTabKey);
         e.register(SecondaryGameCapslockKey);
+        e.register(SecondaryGameBackspaceKey);
         e.register(SecondaryGameInsertKey);
         e.register(SecondaryGameDeleteKey);
 
