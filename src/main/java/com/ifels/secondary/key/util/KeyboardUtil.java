@@ -129,11 +129,14 @@ public class KeyboardUtil {
     }
 
     public static boolean isMatchKey(InputEvent.Key e, KeyMapping keyMapping) {
+        //LogUtil.i("isMatchKey. e.getKey {}, keyMapping.key {}", e.getKey(), keyMapping.getKey().getValue());
         if (e.getKey() != keyMapping.getKey().getValue()) {
             return false;
         }
         KeyModifier mappingModifier = keyMapping.getKeyModifier();
         int eventModify = e.getModifiers();
+        //LogUtil.i("isMatchKey. mappingModifier {}, eventModify {}", mappingModifier, eventModify);
+
         switch (mappingModifier) {
             case ALT -> {
                 return eventModify == GLFW.GLFW_MOD_ALT;
@@ -142,7 +145,11 @@ public class KeyboardUtil {
                 return eventModify == GLFW.GLFW_MOD_SHIFT;
             }
             case CONTROL -> {
-                return eventModify == GLFW.GLFW_MOD_CONTROL;
+                if (Minecraft.ON_OSX) {
+                    return eventModify == GLFW.GLFW_MOD_SUPER;
+                } else {
+                    return eventModify == GLFW.GLFW_MOD_CONTROL;
+                }
             }
             case NONE -> {
                 return true;

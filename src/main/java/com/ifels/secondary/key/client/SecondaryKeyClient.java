@@ -83,7 +83,7 @@ public class SecondaryKeyClient {
                     return;
                 }
 
-                LogUtil.i("onKeyInput. screen {}, key {}", new Object[]{mc.screen, key});
+                //LogUtil.i("onKeyInput. screen {}, key {}", new Object[]{mc.screen, key});
                 if (key == SecondaryGuiEscKey.getKey().getValue()
                         || key == SecondaryGuiMouseLeftKey.getKey().getValue()
                         || key == SecondaryGuiMouseRightKey.getKey().getValue()) {
@@ -173,7 +173,7 @@ public class SecondaryKeyClient {
 
             boolean inGame = isInGame(mc);
             Screen cur = mc.screen;
-            LogUtil.i("screen = {}, player = {}, level = {}", new Object[]{cur != null ? cur.toString() : null, mc.player, mc.level});
+            //LogUtil.i("screen = {}, player = {}, level = {}", new Object[]{cur != null ? cur.toString() : null, mc.player, mc.level});
             if (!inGame) {
                 if (jumpUnbound && savedJumpKey != null) {
                     mc.options.keyJump.setKey(savedJumpKey);

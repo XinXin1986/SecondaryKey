@@ -49,7 +49,7 @@ public class KeyEventInGameHandler {
             KEY_SECONDARY_GAME_B,
             KeyConflictContext.IN_GAME,
             InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_PAGE_UP,
+            GLFW.GLFW_KEY_UNKNOWN,
             KEY_CATEGORY_SECONDARY
     );
 
@@ -169,6 +169,9 @@ public class KeyEventInGameHandler {
     }
 
     public static boolean handleKeyEventInGame(InputEvent.Key e) {
+//        if (SecondaryGameBKey.consumeClick()) {
+//            KeyboardUtil.clickKey(KEY_B);
+//        }
         if (isMatchKey(e, SecondaryGameBKey)) {
             LogUtil.i("isMatchKey SecondaryGameBKey..");
             if (e.getAction() == InputConstants.PRESS) {
@@ -274,6 +277,14 @@ public class KeyEventInGameHandler {
                 KeyboardUtil.pressKey(KEY_DELETE, false);
             } else if (e.getAction() == InputConstants.RELEASE) {
                 KeyboardUtil.releaseKey(KEY_DELETE, false);
+            }
+            return true;
+        } else if (isMatchKey(e, SecondaryGameBackspaceKey)) {
+            LogUtil.i("isMatchKey SecondaryGameBackspaceKey..");
+            if (e.getAction() == InputConstants.PRESS) {
+                KeyboardUtil.pressKey(KEY_BACKSPACE, false);
+            } else if (e.getAction() == InputConstants.RELEASE) {
+                KeyboardUtil.releaseKey(KEY_BACKSPACE, false);
             }
             return true;
         }
