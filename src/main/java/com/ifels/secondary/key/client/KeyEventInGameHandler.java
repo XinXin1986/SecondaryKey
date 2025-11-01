@@ -169,7 +169,7 @@ public class KeyEventInGameHandler {
     }
 
     public static boolean handleKeyEventInGame(InputEvent.Key e) {
-        if (isMatchKey(e, SecondaryGameAKey)) {
+        if (isMatchKey(e, SecondaryGameBKey)) {
             LogUtil.i("isMatchKey SecondaryGameBKey..");
             if (e.getAction() == InputConstants.PRESS) {
                 KeyboardUtil.pressKey(KEY_B, false);
